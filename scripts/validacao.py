@@ -34,7 +34,7 @@ def formatar_telefone(telefone, tipo='fixo'):
     """
     try:
         telefone_str = str(int(telefone))  # Garantir que seja tratado como string sem casas decimais
-        telefone_parsed = phonenumbers.parse(telefone_str, None)  # BR é o código do Brasil
+        telefone_parsed = phonenumbers.parse(telefone_str, "BR")  # BR é o código do Brasil
         if tipo == 'celular':
             return phonenumbers.format_number(telefone_parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
         else:
