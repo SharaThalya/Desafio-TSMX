@@ -6,7 +6,7 @@ def importar_clientes(arquivo_excel):
     """
     Função para importar dados de clientes do arquivo Excel para o PostgreSQL.
     """
-    conn = conectar_banco()
+    conn = conectar_banco("Iniciando importação de clientes...")
     if conn is None:
         return
     
@@ -30,7 +30,7 @@ def importar_clientes(arquivo_excel):
 
             if cliente_existente:
                 contadorNaoImportados += 1
-                print(f"Cliente já existe: {cpfCnpj} - {row['Nome/Razão Social']}")
+                # print(f"Cliente já existe: {cpfCnpj} - {row['Nome/Razão Social']}")
                 nao_importados.append(f"Cliente já existe: {cpfCnpj} - {row['Nome/Razão Social']}")
                 continue
 
@@ -52,7 +52,7 @@ def importar_clientes(arquivo_excel):
                 )
             )
             contadorImportacoes += 1
-            print(f"Cliente importado com sucesso: {row['Nome/Razão Social']}")
+            # print(f"Cliente importado com sucesso: {row['Nome/Razão Social']}")
             importados.append(f"Cliente importado com sucesso: {row['Nome/Razão Social']}") 
         
         except Exception as e:
@@ -72,11 +72,11 @@ def importar_clientes(arquivo_excel):
     cursor.close()
     conn.close()
     
-    pd.DataFrame(importados).to_csv('clientes_importados.csv', index=True, encoding='utf-8')
-    pd.DataFrame(nao_importados).to_csv('clientes_nao_importados.csv', index=True, encoding='utf-8')
+    pd.DataFrame(importados).to_csv('logs/clientes_importados.csv', index=True, encoding='utf-8')
+    pd.DataFrame(nao_importados).to_csv('logs/clientes_nao_importados.csv', index=True, encoding='utf-8')
     
-    print(f"""
+    return f"""
 Processo finalizado. Arquivos CSV gerados.
-{contadorImportacoes} registros importados!
-{contadorNaoImportados} registros não importados!
-          """)
+{contadorImportacoes} registros de clientes importados!
+{contadorNaoImportados} registros de clientes não importados!
+          """

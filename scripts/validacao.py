@@ -1,4 +1,7 @@
 import re
+from phonenumbers import NumberParseException
+import phonenumbers
+
 
 def extrair_cpf_cnpj(cpfCnpj):
     """
@@ -22,3 +25,29 @@ def extrair_cpf_cnpj(cpfCnpj):
         return re.sub(r'\D', '', cnpj_encontrado.group())
     
     return cpfCnpj
+
+
+def formatar_telefone(telefone, tipo='fixo'):
+    """
+    Função para formatar números de telefone e celular.
+    Formato esperado: +XX XXXXX-XXXX para celular e +XX XXXX-XXXX para fixo.
+    """
+    try:
+        telefone_str = str(int(telefone))  # Garantir que seja tratado como string sem casas decimais
+        telefone_parsed = phonenumbers.parse(telefone_str, None)  # BR é o código do Brasil
+        if tipo == 'celular':
+            return phonenumbers.format_number(telefone_parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+        else:
+            return phonenumbers.format_number(telefone_parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+    except (ValueError, NumberParseException):
+        return None  # Retorna None se o telefone não puder ser formatado corretamente
+    
+    
+def validar_email(email):
+    """
+    Função para validar o formato do email usando regex.
+    """
+    regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    if re.match(regex, email):
+        return True
+    return False
