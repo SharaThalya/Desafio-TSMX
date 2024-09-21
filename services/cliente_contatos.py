@@ -1,7 +1,7 @@
 import pandas as pd
 from config.connection import conectar_banco
 from scripts.validacao import formatar_telefone, validar_email, extrair_cpf_cnpj
-from scripts.tratamento import obter_tipo_contato_id, verificar_contato_existente
+from scripts.tratamento import get_tipo_contato_id, verificar_contato_existente
 
 
 def importar_contatos(arquivo_excel):
@@ -54,7 +54,7 @@ def importar_contatos(arquivo_excel):
                     continue
 
                 # Obter ou inserir o tipo de contato na tbl_tipo_contato
-                tipo_contato_id = obter_tipo_contato_id(cursor, tipo_contato)
+                tipo_contato_id = get_tipo_contato_id(cursor, tipo_contato)
                 
                 contato_existe = verificar_contato_existente(cursor, cliente_id, tipo_contato_id, valor_contato)
 
