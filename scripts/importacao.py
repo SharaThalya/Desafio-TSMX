@@ -1,8 +1,9 @@
 import sys
 import os
-from time import sleep
+
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 from services.clientes import importar_clientes
 from services.cliente_contatos import importar_contatos
@@ -14,9 +15,9 @@ if __name__ == "__main__":
 
     # Chamar a função de importação
     importar_clientes(caminho_arquivo_importacao)
-    # sleep(5)
+    
     importar_planos(caminho_arquivo_importacao)
-    # sleep(5)
+    
     importar_contatos(caminho_arquivo_importacao)
-    # sleep(5)
+    
     importar_contratos(caminho_arquivo_importacao)
