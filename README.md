@@ -1,4 +1,3 @@
-
 # Script de importação TSMX - Documentação
 
 Este repositório tem como objetivo importar dados dos clientes de um arquivo Excel para um banco de dados PostgreSQL, garantindo que os dados sejam validados, normalizados e inseridos corretamente, evitando duplicações com base em diversas validações.
