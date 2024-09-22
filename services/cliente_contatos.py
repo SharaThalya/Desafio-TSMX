@@ -51,6 +51,10 @@ def importar_contatos(arquivo_excel):
                     contadorNaoImportados += 1
                     nao_importados.append(f"Contato ({tipo_contato}) nulo para {row['Nome/Razão Social']}")
                     continue
+                if valor_contato == "INVÁLIDO!":
+                    contadorNaoImportados += 1
+                    nao_importados.append(f"Contato ({tipo_contato}) é inválido para {row['Nome/Razão Social']}")
+                    continue
 
                 # Obter ou inserir o tipo de contato na tbl_tipo_contato
                 tipo_contato_id = get_tipo_contato_id(cursor, tipo_contato)
