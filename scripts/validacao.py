@@ -1,6 +1,6 @@
 import re
 from phonenumbers import NumberParseException
-import phonenumbers
+from phonenumbers import NumberParseException, is_valid_number, parse, format_number, PhoneNumberFormat
 
 
 def extrair_cpf_cnpj(cpfCnpj):
@@ -27,7 +27,6 @@ def extrair_cpf_cnpj(cpfCnpj):
     return cpfCnpj
 
 
-from phonenumbers import NumberParseException, is_valid_number, parse, format_number, PhoneNumberFormat
 
 def formatar_telefone(telefone, tipo='fixo'):
     """

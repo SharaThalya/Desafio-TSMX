@@ -48,7 +48,6 @@ def get_plano_contrato(cursor, plano):
     
     return plano
 
-import pandas as pd
 
 def obter_uf(uf):
     """
