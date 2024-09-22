@@ -44,7 +44,6 @@ def importar_planos(arquivo_excel):
     # Confirmar as inserções no banco de dados
     try:
         conn.commit()
-        print(f"{len(importados)} planos importados com sucesso.")
     except Exception as e:
         print(f"Erro ao confirmar transação: {e}")
         conn.rollback()
@@ -57,5 +56,5 @@ def importar_planos(arquivo_excel):
     pd.DataFrame(importados).to_csv('logs/planos_importados.csv', index=False, encoding='utf-8')
     pd.DataFrame(nao_importados).to_csv('logs/planos_nao_importados.csv', index=False, encoding='utf-8')
 
-    return f"Processo finalizado: {len(importados)} planos importados, {len(nao_importados)} não importados."
+    print(f"Processo finalizado: {len(importados)} planos importados, {len(nao_importados)} planos não importados.")
 

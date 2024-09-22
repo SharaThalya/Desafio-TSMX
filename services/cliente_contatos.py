@@ -94,8 +94,4 @@ def importar_contatos(arquivo_excel):
     pd.DataFrame(importados).to_csv('logs/contatos_importados.csv', index=True, encoding='utf-8')
     pd.DataFrame(nao_importados).to_csv('logs/contatos_nao_importados.csv', index=True, encoding='utf-8')
     
-    return f"""
-Processo finalizado. Arquivos CSV gerados.
-{contadorImportacoes} registros de contato importados!
-{contadorNaoImportados} registros de contato não importados!
-          """
+    print(f"Processo finalizado: {len(importados)} contatos importados, {len(nao_importados)} contatos não importados.")
