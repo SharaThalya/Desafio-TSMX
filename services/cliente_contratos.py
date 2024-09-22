@@ -110,4 +110,4 @@ def importar_contratos(arquivo_excel):
     pd.DataFrame(importados).to_csv('logs/contratos_importados.csv', index=False, encoding='utf-8')
     pd.DataFrame(nao_importados).to_csv('logs/contratos_nao_importados.csv', index=False, encoding='utf-8')
 
-    return f"Processo finalizado: {contadorImportacoes} contratos importados, {contadorNaoImportados} não importados."
+    print(f"Processo finalizado: {contadorImportacoes} contratos importados, {contadorNaoImportados} contratos não importados.")

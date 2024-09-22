@@ -75,8 +75,4 @@ def importar_clientes(arquivo_excel):
     pd.DataFrame(importados).to_csv('logs/clientes_importados.csv', index=True, encoding='utf-8')
     pd.DataFrame(nao_importados).to_csv('logs/clientes_nao_importados.csv', index=True, encoding='utf-8')
     
-    return f"""
-Processo finalizado. Arquivos CSV gerados.
-{contadorImportacoes} registros de clientes importados!
-{contadorNaoImportados} registros de clientes não importados!
-          """
+    print(f"Processo finalizado: {len(importados)} clientes importados, {len(nao_importados)} clientes não importados.")
