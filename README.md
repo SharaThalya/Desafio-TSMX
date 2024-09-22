@@ -53,7 +53,7 @@ Este repositório tem como objetivo importar dados dos clientes de um arquivo Ex
     ```bash
     python -m venv env
     source venv/bin/activate  # Linux/Mac
-    env\Scripts\activate     # 
+    env\Scripts\activate     # Windows
     
 3. **Instale as dependências**:
     ```bash
