@@ -1,4 +1,4 @@
-# Importação de Contratos - Documentação
+# Script de importação TSMX - Documentação
 
 Este repositório tem como objetivo importar dados dos clientes de um arquivo Excel para um banco de dados PostgreSQL, garantindo que os dados sejam validados, normalizados e inseridos corretamente, evitando duplicações com base em diversas validações.
 
@@ -23,46 +23,7 @@ Este repositório tem como objetivo importar dados dos clientes de um arquivo Ex
 
 ## 📂 Estrutura do Projeto
 
-📦 projeto-importacao 
-    │
-    ├── 📁 config 
-    │   │ 
-    │   └── connection.py # Script para conexão com o banco de dados
-    │
-    ├── 📁 data # Diretório para armazenar fontes de dados (Arquivos excel, csv).
-    │
-    ├── 📁 env # Diretório do ambiente virtual.
-    │
-    ├── 📁 logs # Diretório para armazenar logs das importações (registros e motivos).
-    │ 
-    ├── 📁 scripts 
-    │   │ 
-    │   ├── validacao.py # Funções de validação e formatação de dados 
-    │   │ 
-    │   ├── tratamento.py # Funções para tratamento de dados como UF, status, planos, contrato e CEP.
-    │   │ 
-    │   └── importacao.py # Script principal de importação.
-    │ 
-    ├── 📁 services # Diretório para armazenar as regras de cada objeto de importação.
-    │   │ 
-    │   ├── 📁 cliente_contratos.py # Regras para contratos.
-    │   │ 
-    │   ├── 📁 cliente_contatos.py # Regras para contatos.
-    │   │
-    │   ├── 📁 cliente_planos.py # Regras para planos.
-    │   │
-    │   └── 📁 clientes.py # Regras para clientes.
-    │ 
-    └── 📁 sql # Diretório para armazenar as scripts SQL.
-    
-
- ```mermaid
-graph TD;
-    importacao.py-->service - cliente_contratos.py;
-    importacao.py-->service - cliente_contatos.py;
-    importacao.py-->service - cliente_planos.py;
-    importacao.py-->service - clientes.py;
-```
+📦 projeto-importacao │ ├── 🛠️ 📁 config │ │ │ └── 🔌 connection.py # Script para conexão com o banco de dados │ ├── 📊 📁 data # Diretório para armazenar fontes de dados (Arquivos excel, csv). │ ├── 🌐 📁 env # Diretório do ambiente virtual. │ ├── 📝 📁 logs # Diretório para armazenar logs das importações (registros e motivos). │ ├── 🧩 📁 scripts │ │ │ ├── ✅ validacao.py # Funções de validação e formatação de dados │ │ │ ├── 🔄 tratamento.py # Funções para tratamento de dados como UF, status, planos, contrato e CEP. │ │ │ └── 📥 importacao.py # Script principal de importação. │ ├── 🛠️ 📁 services # Diretório para armazenar as regras de cada objeto de importação. │ │ │ ├── 📄 cliente_contratos.py # Regras para contratos. │ │ │ ├── 📞 cliente_contatos.py # Regras para contatos. │ │ │ ├── 📦 cliente_planos.py # Regras para planos. │ │ │ └── 👥 clientes.py # Regras para clientes. │ └── 🗄️ 📁 sql # Diretório para armazenar os scripts SQL.
 
 ## ⚙️ Instalação
 
