@@ -12,7 +12,6 @@ def importar_clientes(arquivo_excel):
     
     cursor = conn.cursor()
 
-    # Ler a planilha Excel
     df = pd.read_excel(arquivo_excel, sheet_name='Planilha2')
     
     importados = []
@@ -20,10 +19,8 @@ def importar_clientes(arquivo_excel):
     contadorImportacoes = 0
     contadorNaoImportados = 0
 
-    # Iterar sobre as linhas do DataFrame e inserir no banco de dados
     for index, row in df.iterrows():
         try:
-            # Verificar se o cliente já existe (baseado no CPF/CNPJ)
             cpfCnpj = extrair_cpf_cnpj(str(row['CPF/CNPJ']))
             cursor.execute("SELECT id FROM tbl_clientes WHERE cpf_cnpj = %s", (cpfCnpj,))
             cliente_existente = cursor.fetchone()
@@ -34,11 +31,9 @@ def importar_clientes(arquivo_excel):
                 nao_importados.append(f"Cliente já existe: {cpfCnpj} - {row['Nome/Razão Social']}")
                 continue
 
-            # Verificar se o campo de data de nascimento está vazio ou "NaT"
             data_nascimento = row['Data Nasc.'] if pd.notna(row['Data Nasc.']) else None
             data_cadastro = row['Data Cadastro cliente'] if pd.notna(row['Data Cadastro cliente']) else None
 
-            # Inserir os dados na tabela tbl_clientes
             cursor.execute("""
                 INSERT INTO tbl_clientes (nome_razao_social, nome_fantasia, cpf_cnpj, data_nascimento, data_cadastro)
                 VALUES (%s, %s, %s, %s, %s)
@@ -46,7 +41,7 @@ def importar_clientes(arquivo_excel):
                 (
                     row['Nome/Razão Social'], 
                     row['Nome Fantasia'] if pd.notna(row['Nome Fantasia']) else None,  # Tratar valores NaN
-                    cpfCnpj,  # Converter explicitamente para string
+                    cpfCnpj,
                     data_nascimento, 
                     data_cadastro
                 )
@@ -59,7 +54,7 @@ def importar_clientes(arquivo_excel):
             contadorNaoImportados += 1
             print(f"Erro ao importar cliente {row['Nome/Razão Social']}: {e}")
             nao_importados.append(f"Erro ao importar cliente {row['Nome/Razão Social']}: {e}") 
-            conn.rollback()  # Reverter a transação em caso de erro
+            conn.rollback()
             continue
 
 
