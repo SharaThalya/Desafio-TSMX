@@ -33,11 +33,13 @@ Este repositório tem como objetivo importar dados dos clientes de um arquivo Ex
 - Prevenção de duplicações de contrato com base no endereço e cliente.
 - Limpeza de campos, como remoção de caracteres indesejados em CEPs.
 - Geração de logs para cada execução na linha de importação.
+- Testes automatizados para validação de funcionalidades com `pytest`.
 
 ## 🛠️ Tecnologias Utilizadas
 
 - 🐍 **Python 3.12.6** - Linguagem de programação utilizada para o desenvolvimento do projeto.
 - 🐼 **Pandas 2.2.2** - Para manipulação e leitura de arquivos Excel.
+- 🧪 **Pytest** - Para criação e execução de testes automatizados.
 - 🐘 **Psycopg2** - Para conexão com o banco de dados PostgreSQL.
 - 📞 **Phonenumbers** - Para validação e formatação de números de telefone fixo e celulares.
 

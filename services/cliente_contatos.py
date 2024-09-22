@@ -14,7 +14,6 @@ def importar_contatos(arquivo_excel):
     
     cursor = conn.cursor()
 
-    # Ler a planilha Excel
     df = pd.read_excel(arquivo_excel, sheet_name='Planilha2')
   
     importados = []
@@ -25,7 +24,7 @@ def importar_contatos(arquivo_excel):
     # Iterar sobre as linhas do DataFrame e inserir no banco de dados
     for index, row in df.iterrows():
         try:
-            # Verificar se o cliente já existe (baseado no CPF/CNPJ)
+            # Método para verificar se o cliente já existe (baseado no CPF/CNPJ)
             cpfCnpj = extrair_cpf_cnpj(str(row['CPF/CNPJ']))
             cursor.execute("SELECT id FROM tbl_clientes WHERE cpf_cnpj = %s", (cpfCnpj,))
             cliente_existente = cursor.fetchone()
@@ -51,6 +50,10 @@ def importar_contatos(arquivo_excel):
                     # Registrar o contato nulo como não importado
                     contadorNaoImportados += 1
                     nao_importados.append(f"Contato ({tipo_contato}) nulo para {row['Nome/Razão Social']}")
+                    continue
+                if valor_contato == "INVÁLIDO!":
+                    contadorNaoImportados += 1
+                    nao_importados.append(f"Contato ({tipo_contato}) é inválido para {row['Nome/Razão Social']}")
                     continue
 
                 # Obter ou inserir o tipo de contato na tbl_tipo_contato

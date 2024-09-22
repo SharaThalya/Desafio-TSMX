@@ -27,21 +27,29 @@ def extrair_cpf_cnpj(cpfCnpj):
     return cpfCnpj
 
 
+from phonenumbers import NumberParseException, is_valid_number, parse, format_number, PhoneNumberFormat
+
 def formatar_telefone(telefone, tipo='fixo'):
     """
     Função para formatar números de telefone e celular.
     Formato esperado: +XX XXXXX-XXXX para celular e +XX XXXX-XXXX para fixo.
     """
+    if telefone is None:
+        return None
     try:
-        telefone_str = str(int(telefone))  # Garantir que seja tratado como string sem casas decimais
-        telefone_parsed = phonenumbers.parse(telefone_str, "BR")  # BR é o código do Brasil
-        if tipo == 'celular':
-            return phonenumbers.format_number(telefone_parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
-        else:
-            return phonenumbers.format_number(telefone_parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
+        telefone_str = str(int(float(telefone)))  # Converter para string, tratando como número sem decimais
+        telefone_parsed = parse(telefone_str, "BR")
+
+        # Verificar se o número é válido
+        if not is_valid_number(telefone_parsed):
+            return "INVÁLIDO!"
+
+        # Formatar o número no formato internacional
+        return format_number(telefone_parsed, PhoneNumberFormat.INTERNATIONAL)
+
     except (ValueError, NumberParseException):
         return None  # Retorna None se o telefone não puder ser formatado corretamente
-    
+
     
 def validar_email(email):
     """
