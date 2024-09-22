@@ -50,17 +50,17 @@ Este repositório tem como objetivo importar dados dos clientes de um arquivo Ex
    git clone https://github.com/SharaThalya/Desafio-TSMX
 
 2. **Crie um ambiente virtual e ative-o**:
-
+    ```bash
     python -m venv env
     source venv/bin/activate  # Linux/Mac
     env\Scripts\activate     # 
     
 3. **Instale as dependências**:
-
+    ```bash
     pip install -r requirements.txt
 
 4. **Configure as variáveis de ambiente no arquivo .env para a conexão com o banco de dados**:
-
+    ```bash
     DB_HOST=localhost
     DB_NAME=seu_banco
     DB_USER=seu_usuario
@@ -69,5 +69,5 @@ Este repositório tem como objetivo importar dados dos clientes de um arquivo Ex
 ## ⚙️ Rodando localmente
 
 1. **Execute o script de importação**:
-
+    ```bash
     python .\scripts\importacao.py
