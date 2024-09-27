@@ -48,6 +48,9 @@ def importar_contratos(arquivo_excel):
             bairro = str(row['Bairro'])
             cidade = str(row['Cidade'])
             complemento = str(row['Complemento']) if pd.notna(row['Complemento']) else None
+            desconto = float(row['Desconto']) if pd.notna(row['Desconto']) else 0.0
+            mac = str(row['MAC']).strip() if pd.notna(row['MAC']) else None
+            ip = str(row['IP']).strip() if pd.notna(row['IP']) else None
 
             # Verificar se o contrato já existe para evitar duplicidade com base no endereço
             if contrato_existe(cursor, logradouro, numero, bairro, cidade):
@@ -69,8 +72,11 @@ def importar_contratos(arquivo_excel):
                     endereco_complemento,
                     endereco_cep,
                     endereco_uf,
-                    status_id
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    status_id,
+                    desconto,
+                    mac,
+                    ip
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s )
                 """, (
                     cliente_id,
                     plano_id,
@@ -84,6 +90,9 @@ def importar_contratos(arquivo_excel):
                     cep,
                     uf,
                     status_contrato_id,
+                    desconto,
+                    mac,
+                    ip,
                 ))
             importados.append(f"Contrato importado com sucesso para {row['Nome/Razão Social']}!")
             contadorImportacoes += 1

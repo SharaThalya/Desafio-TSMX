@@ -32,7 +32,7 @@ def test_formatar_telefone_celular_valido():
 
 def test_formatar_telefone_invalido():
     # Teste com número de telefone inválido
-    assert formatar_telefone('1234') is None
+    assert formatar_telefone('1234') == 'INVÁLIDO!'
 
 def test_formatar_telefone_caracteres_invalidos():
     # Teste com caracteres não numéricos
